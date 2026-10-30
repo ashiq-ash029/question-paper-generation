@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Automated Question Paper Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head> 
+<body>
+    <header>
+        <!-- You can add a navigation bar or header content here if needed -->
+    </header>
+
+    <main class="container mt-5">
+        <h2 class="text-center">Generate Questions from Paragraph</h2>
+        
+        <!-- Input Area for Paragraph -->
+        <form id="paragraphForm" class="col-md-8 mx-auto" method="post" action="/generate">
+            <div class="mb-3">
+                <label for="paragraphInput" class="form-label">Enter Paragraph</label>
+                <textarea class="form-control" id="paragraphInput" name="context" rows="5" placeholder="Paste your paragraph here..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Generate Questions</button>
+        </form>
+
+        <!-- Display Questions -->
+        <div id="questions" class="mt-4">
+            <h4>Generated Questions:</h4>
+             {% if questions %}
+              <ul id="questionsList">
+                {% for question in questions %}
+                  <li>{{ question }}</li>
+                {% endfor %}
+              </ul>
+             {% endif %}
+        </div>
+
+    </main>
+
+    <footer>
+        <!-- Footer content if needed -->
+    </footer>
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <!-- <script>
+        // Handle form submission
+        document.getElementById('paragraphForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+    
+            const paragraph = document.getElementById('paragraphInput').value;
+            if (!paragraph) {
+                alert("Please enter a paragraph.");
+                return;
+            }
+    
+            const questionsList = document.getElementById('questionsList');
+            questionsList.innerHTML = ''; // Clear existing questions
+            const loader = document.createElement('li');
+            loader.textContent = "Generating questions, please wait...";
+            questionsList.appendChild(loader);
+    
+            fetch('http://127.0.0.1:5000/generate-questions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: paragraph })
+            })
+            .then(response => response.json())
+            .then(data => {
+                questionsList.innerHTML = ''; // Clear loader
+    
+                if (data.questions && data.questions.length > 0) {
+                    data.questions.forEach(question => {
+                        const li = document.createElement('li');
+                        li.textContent = question;
+                        questionsList.appendChild(li);
+                    });
+                } else {
+                    questionsList.innerHTML = "<li>No questions generated.</li>";
+                }
+            })
+            .catch(error => {
+                questionsList.innerHTML = "<li>Error generating questions. Please try again later.</li>";
+                console.error("Error generating questions:", error);
+            });
+        });
+    </script> -->
+    <!--<script>
+        document.getElementById('paragraphForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent form submission
+
+    const paragraph = document.getElementById('paragraphInput').value.trim();
+    if (!paragraph) {
+        alert("Please enter a paragraph.");
+        return;
+    }
+
+    const questionsList = document.getElementById('questionsList');
+    questionsList.innerHTML = ''; // Clear existing questions
+
+    // Show loading message
+    const loader = document.createElement('li');
+    loader.textContent = "Generating questions, please wait...";
+    questionsList.appendChild(loader);
+
+    fetch('http://127.0.0.1:5000/generate-questions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ prompt: paragraph }) // FIXED key name
+    })
+    .then(response => {
+        console.log("Response status:", response.status);
+        return response.json();
+    })
+    .then(data => {
+        questionsList.innerHTML = ''; // Clear loader
+
+        if (data.questions && data.questions.length > 0) {
+            data.questions.forEach(question => {
+                const li = document.createElement('li');
+                li.textContent = question;
+                questionsList.appendChild(li);
+            });
+        } else {
+            questionsList.innerHTML = "<li>No questions generated.</li>";
+        }
+    })
+    .catch(error => {
+        questionsList.innerHTML = "<li>Error generating questions. Please try again later.</li>";
+        console.error("Error generating questions:", error);
+    });
+});
+
+    </script>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+     <script src="{{ url_for('static', filename='js/main.js') }}"></script>   -->
+    
+</body>
+</html>

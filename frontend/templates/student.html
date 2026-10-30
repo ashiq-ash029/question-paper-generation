@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+    <h2>Welcome, <span id="studentName"></span></h2>
+
+    <h3>Department: <span id="studentDept"></span></h3>
+    <h3>Semester: <span id="studentSem"></span></h3>
+    <h3>Subject: <span id="studentSub"></span></h3>
+
+    <button onclick="logout()">Logout</button>
+
+    <script>
+        document.getElementById("studentName").innerText = sessionStorage.getItem("username");
+        document.getElementById("studentDept").innerText = sessionStorage.getItem("department");
+        document.getElementById("studentSem").innerText = sessionStorage.getItem("semester");
+        document.getElementById("studentSub").innerText = sessionStorage.getItem("subject");
+
+        function logout() {
+            sessionStorage.clear();
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>

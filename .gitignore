@@ -1,26 +1,33 @@
-# Python virtual environment
+
+# Python
 venv/
 env/
 .venv/
-
-# Python cache
 __pycache__/
 *.pyc
 *.pyo
 
-# Model files
-*.pt
-*.pth
-*.keras
-*.h5
+# Node.js
+node_modules/
+**/node_modules/
+
+# Build files
+dist/
+build/
+.next/
+coverage/
 
 # Environment variables
 .env
+.env.*
+!.env.example
 
 # IDE
 .vscode/
 .idea/
 
-# Build files
-build/
-dist/
+# Python model files
+*.pt
+*.pth
+*.keras
+*.h5

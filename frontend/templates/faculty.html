@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Faculty Dashboard</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+    <h2>Welcome, <span id="facultyName"></span></h2>
+
+    <h3>Department: <span id="facultyDept"></span></h3>
+    <h3>Semester: <span id="facultySem"></span></h3>
+    <h3>Subject: <span id="facultySub"></span></h3>
+
+    <h3>Upload Notes</h3>
+    <textarea id="notes" placeholder="Paste your notes here..."></textarea>
+    <button onclick="generateQuestions()">Generate Questions</button>
+
+    <h3>Generated Questions</h3>
+    <div id="questions"></div>
+
+    <button onclick="logout()">Logout</button>
+
+    <script>
+        document.getElementById("facultyName").innerText = sessionStorage.getItem("username");
+        document.getElementById("facultyDept").innerText = sessionStorage.getItem("department");
+        document.getElementById("facultySem").innerText = sessionStorage.getItem("semester");
+        document.getElementById("facultySub").innerText = sessionStorage.getItem("subject");
+
+        function logout() {
+            sessionStorage.clear();
+            window.location.href = "login.html";
+        }
+
+        async function generateQuestions() {
+            const notes = document.getElementById("notes").value;
+            const response = await fetch("http://localhost:3000/generate-questions", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ notes })
+            });
+
+            const data = await response.json();
+            document.getElementById("questions").innerHTML = data.questions.map(q => `<p>${q}</p>`).join("");
+        }
+    </script>
+</body>
+</html>

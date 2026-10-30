@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Automated Question Paper Generator</title>
+    <!-- <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head> 
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+              <a class="navbar-brand" href="#">A.Q.P.G</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item ms-auto">
+                    <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                  </li>
+                    <a class="nav-link active" aria-current="page" href="#about">About</a>
+                  </li>
+                    <a class="nav-link active" aria-current="page" href="#">Sample Question Paper</a>
+                  </li>
+                    <a class="btn btn-primary active" aria-current="page" href="/test">Generate QP</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <main>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12 col-md-8">
+                  <img src="{{ url_for('static', filename='assets/images/banner.jpg') }}" class="img-fluid" alt="img">
+                    <h1>Welcome to Automated Question Paper Generator</h1>
+                    <p>Your one-stop solution for creating high-quality, automated Question Papers (QPs) with ease.Our platform is designed to help educators, trainers, and institutions generate custom question papers quickly and efficiently. Whether you need multiple-choice questions, short answers, or long-form assessments, we’ve got you covered. Save time and effort with our intelligent QP generator that tailors the exam to your exact specifications.
+                    Start creating your first question paper now and experience the convenience of automated exam design!</p>
+
+                   
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="card shadow-lg p-4 bg-dark" style="width: 100%; max-width: 400px;">
+                        <h3 class="card-title text-center mb-4">Login to Your Account</h3>
+                        <form action="/loginsubmit" method="post" >
+                          <h1>{{msg}}</h1>
+                          <!-- Email/Username Input -->
+                          <div class="mb-3">
+                            <label for="username" class="form-label">Username or Email</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username or email">
+                          </div>
+                  
+                          <!-- Password Input -->
+                          <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
+                          </div>
+
+                          <div class="mb-3">
+                            <select class="form-select mt-3 bg-dark text-white" id="roleSelect">
+                                <option value="" disabled selected>Select Role</option>
+                                <option value="student">Student</option>
+                                <option value="faculty">Faculty</option>
+                            </select>
+                          </div>
+                  
+                          <!-- Forgot Password Link -->
+                          <div class="mb-3 text-end">
+                            <a href="#">Forgot Password?</a>
+                          </div>
+                  
+                          <!-- Login Button -->
+                          <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </form>
+                        
+                        <!-- Sign Up Link -->
+                        <div class="mt-3 text-center">
+                          <p>Don't have an account? <a href="/sign">Sign up now</a></p>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12 col-md-4 mt-5">
+                     <img src="{{ url_for('static', filename='assets/images/hero.avif') }}" class="img-fluid" alt="hero">
+                </div>
+                <div class="col-12 col-md-8 mt-5">
+                    <div class="about" id="about">
+                        <h2>About Us</h2>
+                        <p>We are a dedicated team of educators, developers, and technology enthusiasts, aiming to revolutionize the way question papers (QPs) are created. Our mission is to provide a fast, efficient, and customizable platform that empowers teachers, educational institutions, and trainers to generate high-quality question papers with ease.</p>
+
+                        <h3>Why We Started</h3>
+                        In today’s fast-paced world, creating question papers manually can be time-consuming and repetitive. We saw an opportunity to streamline this process by using automation and smart algorithms, which would allow educators to focus more on teaching and less on administrative tasks.
+                        
+                        <h3>Our Vision</h3>
+                        <p>We envision a future where educators worldwide can generate question papers in minutes, tailor them to their specific needs, and ensure that assessments are both effective and fair. We aim to make exam creation simple, secure, and efficient for everyone.</p>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+
+
+
+
+
+    <!-- <script src="./js/bootstrap.bundle.min.js"></script> -->
+    <script src="{{ url_for('static', filename='static/js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
